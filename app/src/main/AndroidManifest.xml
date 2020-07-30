@@ -9,21 +9,45 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".URLScheme">
+        <activity android:name=".URLScheme1">
+            <!--
+                定义一个通过 URLScheme(deep link) 启动的 intent-filter
+            -->
             <intent-filter>
+                <!--下面这 3 句必须要加-->
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!--
+                    scheme - 协议名
+                    host, path, port - 顾名思义
+
+                    按如下配置，则 deep link 为 webabcd://a.b.c/api
+                -->
                 <data
-                    android:host="abc"
-                    android:path="/xyz"
-                    android:port="8888"
+                    android:host="a.b.c"
+                    android:path="/api"
                     android:scheme="webabcd" />
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+        <!--
+            注册一个 ContentProvider
+            name - 实现此 ContentProvider 的类
+            authorities - 此 ContentProvider 的地址（相当于 url 中的 host）
+            exported - 此 ContentProvider 是否可被其他应用调用
+        -->
+        <provider
+            android:name=".ContentProviderDemo1"
+            android:authorities="cn.webabcd.contentProviderDemo1"
+            android:exported="true"/>
+    </application>
 </manifest>
