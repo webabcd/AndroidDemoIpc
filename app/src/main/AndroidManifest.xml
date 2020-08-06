@@ -9,13 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <!--
+            exported - 是否允许此 activity 被其他应用打开
+        -->
+        <activity android:name=".PackageDemo1" android:exported="true"></activity>
         <activity android:name=".URLScheme1">
-            <!--
-                定义一个通过 URLScheme(deep link) 启动的 intent-filter
-            -->
+
+            <!-- 定义一个通过 URLScheme(deep link) 启动的 intent-filter -->
             <intent-filter>
-                <!--下面这 3 句必须要加-->
+
+                <!-- 下面这 3 句必须要加 -->
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
@@ -38,7 +43,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <!--
             注册一个 ContentProvider
             name - 实现此 ContentProvider 的类
@@ -48,6 +52,7 @@
         <provider
             android:name=".ContentProviderDemo1"
             android:authorities="cn.webabcd.contentProviderDemo1"
-            android:exported="true"/>
+            android:exported="true" />
     </application>
+
 </manifest>
