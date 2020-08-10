@@ -10,6 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <!--
+            receiver - 注册一个 BroadcastReceiver
+            enabled - 是否启用这个广播接收器
+            exported - 是否允许这个广播接收器接收本程序以外的广播
+        -->
+        <receiver android:name=".BroadcastDemo1"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <!--监听系统广播只需要在这里配置广播的 action 的 name 即可-->
+                <!--监听开机广播（另外要添加 <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> 权限，以及解决程序安装在 sd 卡时的问题，本例都不说明了，网上搜吧）-->
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <intent-filter>
+                <!--监听名为 cn.webabcd.broadcast.BroadcastDemo1 的广播-->
+                <action android:name="cn.webabcd.broadcast.BroadcastDemo1" />
+            </intent-filter>
+        </receiver>
+        <!--
             exported - 是否允许此 activity 被其他应用打开
         -->
         <activity android:name=".PackageDemo1" android:exported="true"></activity>
